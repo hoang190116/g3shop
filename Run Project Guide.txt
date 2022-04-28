@@ -1,0 +1,38 @@
+ATTENTION: Our git already changed to "https://github.com/hoang190116/g3shopGitRepo.git", any update will be uploaded in there. So, I recommend you to clone this repository
+
+===========================================================
+For Database, Use Microsoft SQL Manager Studio 18 -> Create a new databse with name "g3shop"; Make sure you have Database Server already!! "And you should let Database Server name is ADMIN"
+-> then go to File at navbar -> open -> File -> Choose G3scriptUpdateFinale.sql -> Run file (F5) or use "Execute" button at navbar
+
+Remmember to open account "sa" of your database server - set Username=sa and Password=sa 
+(Manage account at "Security folder" of DB server -> Logins -> Right click on "sa" account -> Properties -> Change password to "sa" at general tab -> next go Status tab -> tick on "Enable" radio of Login -> Then OK)
+
+Right Click on Database Name -> Properties -> Security -> Tick on "SQL Server and Windows Authentication Mode" -> Click OK.
+Let Test: Click Disconnect database with icon above Databse Server. Let click incon connect -> Choose Sever Name -> At Authenciation: Choose SQL Server Authenciation -> Username: sa - Password: sa -> Login
+If login fail, maybe some step wrong, you can choose Authenciation to Windown Authenciation for config database again. Or try Restart DB: Right Click on Database Name -> Restart 
+
+Remmember to open port 1433 from "SQL 2019 Configuration Manager" tool, go there and enable anything from Client Proctocols -> then restart your SQL server(MSSQL...) at SQL Server Services tab
+
+===========================================================
+For Code,
+First Remmber to install Apache Tomcat 9
+Remmember to install JDK 8
+
+Cut the "img" folder to your apache/bin -> for mine is: "D:\Tomcat\apache-tomcat-9.0.54\bin", paste this img folder in folder bin here
+
+Open Netbean 12 -> Open Project nat navbar -> choose g3shop folder -> When Netbean open project g3shop, it will show an alert to Resolve problem, click Resolve button then, click at The error and click Resolve button -> After finish, right Click on project and choose Clean and Build
+---If you dont have apache server already yet -> system will need you choose it. Go window in navbar -> choose services -> click services tab -> right click on Server then add server for apache (direct to "apache-tomcat-9.0.54" folder)
+---If build fail, maybe project cannot link jdk 8. So you choose Properties again -> Tab build - Complie -> Java Paltform -> Select JDK8 or "Click Manage Java Platforms" button if you dont link jdk folder yet
+
+For Database Connection:
+Open g3shop project tab -> Source Pakages -> com.config -> SpringMvcConfig.java -> Look at getData() method ->
+-dt.setUrl("jdbc:sqlserver://ADMIN:1433;databaseName=g3shop"); ---("ADMIN" is DB Server Name; if ur DB name is different, change it to "//HOANG:1433" for example)
+-dt.setUsername("sa"); ---(Here is where i told you open account sa at Step 1, this is username)
+-dt.setPassword("sa"); ---(Here is password of sa account)
+
+After finish build -> Right click on Project -> Choose Properties -> Choose Run -> then select your browser to run website
+
+Now Right click on project and Run it.
+
+======================
+Good Luck
